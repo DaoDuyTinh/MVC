@@ -1,5 +1,10 @@
+<!DOCTYPE html>
 <html>
+<head>
+<title>Railway Registration Form</title>
+</head>
 <body>
-<h2>Hello World!</h2>
+<center><a href="bookingForm">Click here for reservation</a></center>
+
 </body>
 </html>
