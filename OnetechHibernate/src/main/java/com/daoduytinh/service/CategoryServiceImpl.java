@@ -18,7 +18,7 @@ public class CategoryServiceImpl implements CategoryService{
 		this.categoryDAO = categoryDAO;
 	}
 	@Transactional
-	public List<Category> listCategorypopular() {
-		return this.categoryDAO.listCategorypopular();
+	public List<Category> AllCategory() {
+		return this.categoryDAO.AllCategory();
 	}
 }

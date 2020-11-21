@@ -35,8 +35,18 @@
 							</div>
 							<div class="top_bar_user">
 								<div class="user_icon"><img src="${pageContext.request.contextPath}/resources/images/user.svg" alt=""></div>
-								<div><a href="#">Đăng ký</a></div>
-								<div><a href="login">Đăng nhập</a></div>
+									<c:if test="${empty sessionScope.LoginInfo}">
+							<div><a href = "${pageContext.request.contextPath}/login">Đăng ký</a></div>
+							</c:if>
+							<c:if test="${not empty sessionScope.LoginInfo}">
+								<div><a href = "${pageContext.request.contextPath}/logout">Đăng xuất</a></div>									
+							</c:if>
+								<c:if test="${empty sessionScope.LoginInfo}">
+							<div><a href = "${pageContext.request.contextPath}/login">Đăng nhập</a></div>
+							</c:if>
+							<c:if test="${not empty sessionScope.LoginInfo}">
+								<div><a href = "${pageContext.request.contextPath}/logout">${LoginInfo.name}</a></div>									
+							</c:if>
 							</div>
 						</div>
 					</div>
@@ -181,7 +191,7 @@
 									<li class="hassubs">
 										<a href="#">Trang<i class="fas fa-chevron-down"></i></a>
 										<ul>
-											<li><a href="shop.html">Cửa Hàng<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="quan-ly">Quản lý sản phẩm<i class="fas fa-chevron-down"></i></a></li>
 											<li><a href="product.html">Sản Phẩm<i class="fas fa-chevron-down"></i></a></li>
 											<li><a href="blog.html">Bài Viết<i class="fas fa-chevron-down"></i></a></li>
 											<li><a href="blog_single.html">Đăng Bài Viết<i class="fas fa-chevron-down"></i></a></li>

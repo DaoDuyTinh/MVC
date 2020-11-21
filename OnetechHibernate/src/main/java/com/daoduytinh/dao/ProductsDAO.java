@@ -15,4 +15,8 @@ public interface ProductsDAO {
 	public List<Products> listProductsviewed();
 	public Products getProductsById(int id);
 	public List<Products> listProductsNearId(int id);
+	public List<Products> AllProducts();
+	public void AddProduct(Products p);
+	public void UpdateProduct(Products p);
+	public void removePhone(int id) ;
 }

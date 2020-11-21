@@ -14,15 +14,22 @@ import com.daoduytinh.model.Products;
 import com.daoduytinh.service.BannerService;
 import com.daoduytinh.service.CategoryService;
 import com.daoduytinh.service.ProductsService;
+import com.daoduytinh.service.RelatedproService;
 @Controller
 public class ProductsController {
 
 			private ProductsService productsService;
+			private RelatedproService relatedproService;
 			
 			@Autowired(required = true)
 			@Qualifier(value = "productsService")
 			public void setProductsService(ProductsService pr) {
 				this.productsService = pr;
+			}
+			@Autowired
+			@Qualifier(value = "relatedproService")
+			public void setRelatedproService(RelatedproService re) {
+				this.relatedproService = re;
 			}
 			@RequestMapping(value = "product/{id}", method = RequestMethod.GET)
 			public String ProductsDetail(@PathVariable("id") int id, Model model) {
@@ -36,7 +43,9 @@ public class ProductsController {
 				model.addAttribute("trend", this.productsService.listProductstrend());
 				model.addAttribute("review", this.productsService.listProductsreview());
 				model.addAttribute("viewed", this.productsService.listProductsviewed());
-				model.addAttribute("near", this.productsService.listProductsNearId(id));
+				model.addAttribute("near", this.productsService.AllProducts());
+				model.addAttribute("nearnear", this.relatedproService.ProductRelated(id));
+				
 				return "product/product";
 			}
 			

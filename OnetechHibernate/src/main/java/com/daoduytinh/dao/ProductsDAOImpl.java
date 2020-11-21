@@ -18,6 +18,17 @@ public class ProductsDAOImpl implements ProductsDAO {
 	public void setSessionFactory(SessionFactory sf) {
 		this.sessionFactory = sf;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Products> AllProducts() {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Products> all = session.createQuery("from Products").list();
+		for (Products p : all) {
+			logger.info("Products List::" + p);
+		}
+		return all;
+	}
+	
 
 	@SuppressWarnings("unchecked")
 	public List<Products> listProductsdealsofweek() {
@@ -111,6 +122,25 @@ public class ProductsDAOImpl implements ProductsDAO {
 			}
 			return productsviewed;			
 		}	
-		
+		@SuppressWarnings("unchecked")
+		public void AddProduct(Products p) {
+			Session session = this.sessionFactory.getCurrentSession();
+			session.persist(p);
+			logger.info("Products saved successfully, Products Details=" + p);
+		}
+		@SuppressWarnings("unchecked")
+		public void UpdateProduct(Products p) {
+			Session session = this.sessionFactory.getCurrentSession();
+			session.update(p);
+			logger.info("Products updated successfully, Products Details=" + p);
+		}
+		public void removePhone(int id) {
+			Session session = this.sessionFactory.getCurrentSession();
+			Products p = (Products) session.load(Products.class, new Integer(id));
+			if (null != p) {
+				session.delete(p);
+			}
+			logger.info("Products deleted successfully, Products details=" + p);
+		}
 		
 }

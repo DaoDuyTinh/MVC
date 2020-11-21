@@ -17,7 +17,7 @@ public class CategoryDAOImpl implements CategoryDAO{
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Category> listCategorypopular() {
+	public List<Category> AllCategory() {
 		Session session = this.sessionFactory.getCurrentSession();
 		List<Category> categorypopular = session.createQuery("from Category").list();
 		for (Category c : categorypopular) {

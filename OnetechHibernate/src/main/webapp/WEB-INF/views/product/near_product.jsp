@@ -18,14 +18,16 @@
 						<!-- Recently Viewed Slider -->
 
 						<div class="owl-carousel owl-theme viewed_slider">
-							<c:forEach var="product" items= "${near}">
+						<c:forEach var="related" items= "${nearnear}">
+						<c:forEach var="product" items= "${near}">
+							<c:if test="${product.getId() == related.getIdproductre() }">
 							<!-- Recently Viewed Item -->
 							<div class="owl-item">
 								<div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
 									<div class="viewed_image"><img src="${pageContext.request.contextPath}/resources/${product.getImage() }" alt=""></div>
 									<div class="viewed_content text-center">
 										<div class="viewed_price"><fmt:formatNumber value = "${product.getPriceNet() }" type="number" maxIntegerDigits="14"/><span><fmt:formatNumber value = "${product.getPrice() }" type="number" maxIntegerDigits="14"/></span></div>
-										<div class="viewed_name"><a href="product/${product.getId()}">${product.getTitle() }</a></div>
+										<div class="viewed_name"><a href="${pageContext.request.contextPath}/product/${product.getId()}">${product.getTitle() }</a></div>
 									</div>
 									<ul class="item_marks">
 										<li class="item_mark item_discount">${product.getDiscount() }%</li>
@@ -33,6 +35,8 @@
 									</ul>
 								</div>
 							</div>
+							</c:if>
+							</c:forEach>
 							</c:forEach>
 							</div>
 						</div>

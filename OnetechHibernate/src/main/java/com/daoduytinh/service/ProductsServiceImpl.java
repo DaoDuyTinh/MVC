@@ -2,12 +2,14 @@ package com.daoduytinh.service;
 
 import java.util.List;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.daoduytinh.dao.ProductsDAO;
 import com.daoduytinh.model.Products;
+import com.daoduytinh.model.Users;
 
 @Service
 public class ProductsServiceImpl implements ProductsService {
@@ -61,5 +63,21 @@ public class ProductsServiceImpl implements ProductsService {
 	@Transactional
 	public List<Products> listProductsNearId(int id){
 		return this.productsDAO.listProductsNearId(id);
+	}
+	@Transactional
+	public List<Products> AllProducts(){
+		return this.productsDAO.AllProducts();
+	}
+	@Transactional
+	public void AddProduct(Products p) {
+		this.productsDAO.AddProduct(p);
+	}
+	@Transactional
+	public void UpdateProduct(Products p) {
+		this.productsDAO.UpdateProduct(p);
+	}
+	@Transactional
+	public void removePhone(int id) {
+		this.productsDAO.removePhone(id);
 	}
 }

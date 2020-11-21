@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.daoduytinh.model.Banner;
 import com.daoduytinh.model.Category;
 import com.daoduytinh.model.Products;
+import com.daoduytinh.model.Users;
 import com.daoduytinh.service.BannerService;
 import com.daoduytinh.service.CategoryService;
 import com.daoduytinh.service.ProductsService;
+import com.daoduytinh.service.UsersService;
 
 @Controller
 public class HomeController {
@@ -43,6 +45,7 @@ public class HomeController {
 		public void setCategoryService(CategoryService ca) {
 			this.categoryService = ca;
 		}
+		
 		@RequestMapping(value = "/", method = RequestMethod.GET)
 		public String Productsdealsofweek(Model model) {
 			model.addAttribute("products", new Products());
@@ -60,7 +63,8 @@ public class HomeController {
 			model.addAttribute("bannerbot",this.bannerService.listBannerbottom());
 			//Category
 			model.addAttribute("category", new Category());
-			model.addAttribute("categories", this.categoryService.listCategorypopular());
+			model.addAttribute("categories", this.categoryService.AllCategory());
 			return "home/home";
 		}
+		
 	}

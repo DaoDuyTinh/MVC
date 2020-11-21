@@ -1,12 +1,16 @@
 package com.daoduytinh.model;
 
 import java.sql.Timestamp;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.daoduytinh.dao.ProductsDAOImpl;
@@ -49,6 +53,17 @@ public class Products extends ProductsDAOImpl{
     protected boolean latest_review;
 	@Column(name = "id_category")
     protected int id_category;
+	
+	@OneToMany(cascade = CascadeType.ALL)  
+	@JoinColumn(name="id_product")  
+	private List<Relatedpro> idproductre; 
+	public List<Relatedpro> getRelatedpro() {  
+	    return idproductre;  
+	}  
+	public void setRelatedpro(List<Relatedpro> idproductre) {  
+	    this.idproductre = idproductre;  
+	}
+	
 	public Products() {
 	}
 	public Products(int id, String title, String description, double price, double price_net, int available, int sold,
